@@ -1,0 +1,6 @@
+/* app.css – layout helper only */
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+}
