@@ -16,12 +16,14 @@ app.use(
       "https://service-ticket-amc-system.vercel.app",
       "http://localhost:3000"
     ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
-;
+
+app.options("*", cors());
+
 app.use(express.json());
 
 // ✅ FIXED STATIC FILE SERVING
