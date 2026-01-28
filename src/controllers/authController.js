@@ -69,7 +69,8 @@ exports.forgotPassword = async (req, res) => {
 
     await user.save({ validateBeforeSave: false });
 
-    const resetUrl = `http://localhost:3000/reset-password/${resetToken}`;
+    const resetUrl = `https://service-ticket-amc-system.vercel.app/reset-password/${resetToken}`;
+
 
     await sendEmail({
       to: user.email,
