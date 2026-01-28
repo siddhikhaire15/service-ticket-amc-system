@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 import { useState } from "react";
+import api from "../utils/api"; 
 
 function Register() {
   const navigate = useNavigate();
@@ -12,44 +13,29 @@ function Register() {
   const [error, setError] = useState("");
 
   const handleRegister = async (e) => {
-    e.preventDefault();
-    setError("");
+  e.preventDefault();
+  setError("");
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
+  if (password !== confirmPassword) {
+    setError("Passwords do not match");
+    return;
+  }
 
-    try {
-      const res = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-          confirmPassword,
-        }),
-      });
+  try {
+    await api.post("/auth/register", {
+      name,
+      email,
+      password,
+      confirmPassword,
+    });
 
-      const data = await res.json();
+    localStorage.setItem("name", name);
+    navigate("/login");
+  } catch (err) {
+    setError(err?.response?.data?.message || "Server not reachable");
+  }
+};
 
-      if (!res.ok) {
-        setError(data.message || "Registration failed");
-        return;
-      }
-
-      // ✅ Save Full Name for Topbar welcome message
-      localStorage.setItem("name", name);
-
-      // ✅ Go to login page
-      navigate("/login");
-    } catch (err) {
-      setError("Server not reachable");
-    }
-  };
 
   return (
     <div className="login-page">
