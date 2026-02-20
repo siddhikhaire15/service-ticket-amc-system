@@ -252,9 +252,7 @@ function AMCCard({ amc }) {
   "";
 
 
-  let fullUrl = attachmentUrl.includes("localhost")
-  ? attachmentUrl.replace("http://localhost:5000", "https://service-ticket-amc-system.onrender.com")
-  : `https://service-ticket-amc-system.onrender.com${attachmentUrl}`;
+  const fullUrl = `https://service-ticket-amc-system.onrender.com${attachmentUrl}`;
 
   const covered = Array.isArray(amc?.coveredServices) ? amc.coveredServices : [];
   const handleDownload = async () => {
