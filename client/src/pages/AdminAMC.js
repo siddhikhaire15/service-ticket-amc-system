@@ -437,7 +437,9 @@ export default function AdminAMC() {
                   <tbody className="text-white/90 text-sm">
                     {amcs.map((a, idx) => {
                       const doc = a?.amcDocumentUrl || "";
-                      const fullDoc = doc ? `http://localhost:5000${doc}` : "";
+                      let fullUrl = attachmentUrl.includes("localhost")
+  ? attachmentUrl.replace("http://localhost:5000", "https://service-ticket-amc-system.onrender.com")
+  : `https://service-ticket-amc-system.onrender.com${attachmentUrl}`;
 
                       return (
                         <tr key={a._id} className="border-t border-white/10 hover:bg-white/[0.04] transition">

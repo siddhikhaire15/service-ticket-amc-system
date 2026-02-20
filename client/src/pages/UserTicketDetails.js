@@ -389,7 +389,9 @@ function capitalize(str) {
 function AttachmentInfo({ attachmentUrl }) {
   if (!attachmentUrl) return null;
 
-  const fullUrl = `http://localhost:5000${attachmentUrl}`;
+  let fullUrl = attachmentUrl.includes("localhost")
+  ? attachmentUrl.replace("http://localhost:5000", "https://service-ticket-amc-system.onrender.com")
+  : `https://service-ticket-amc-system.onrender.com${attachmentUrl}`;
 
   return (
     <button
