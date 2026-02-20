@@ -13,7 +13,7 @@ export default function AttachmentViewer({ attachmentUrl }) {
     );
   }
 
-  const fullUrl = `http://localhost:5000${attachmentUrl}`;
+  const fullUr
 
   return (
     <>
@@ -47,10 +47,14 @@ export default function AttachmentViewer({ attachmentUrl }) {
           title="Click to open full image"
         >
           <img
-            src={fullUrl}
-            alt="Ticket Attachment"
-            className="w-full h-[140px] object-cover"
-          />
+  src={
+    attachmentUrl?.replace(
+      "http://localhost:5000",
+      "https://service-ticket-amc-system.onrender.com"
+    )
+  }
+  alt="attachment"
+/>
         </button>
       </div>
 
@@ -94,10 +98,14 @@ export default function AttachmentViewer({ attachmentUrl }) {
             <div className="p-5 bg-black/35">
               <div className="rounded-2xl border border-white/10 bg-black/40 overflow-hidden">
                 <img
-                  src={fullUrl}
-                  alt="Full Attachment"
-                  className="w-full max-h-[75vh] object-contain"
-                />
+  src={
+    attachmentUrl?.replace(
+      "http://localhost:5000",
+      "https://service-ticket-amc-system.onrender.com"
+    )
+  }
+  alt="attachment"
+/>
               </div>
             </div>
           </div>
